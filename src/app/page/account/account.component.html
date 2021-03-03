@@ -1,0 +1,58 @@
+<section class="bread-crumb error">
+    <div class="container">
+        <ul>
+            <li>
+                <a href="">
+                    <span>Trang chủ</span>
+                </a>
+                <span>
+                    <i class="fa fa-angle-right"></i>
+                </span>
+            </li>
+            <li>
+                <strong> Trang khách hàng</strong>
+            </li>
+        </ul>
+    </div>
+</section>
+<!-- Hết Bread Crumb -->
+<section class="page-customer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="block-account">
+                    <h5>Trang tài khoản</h5>
+                    <p>
+                        Xin chào,
+                        <span>{{customer.customerName | uppercase}}</span> &nbsp;!
+                    </p>
+                    <ul>
+                        <li>
+                            <a [routerLink]="['/account']" class="active">Thông tin tài khoản</a>
+                        </li>
+                        <li>
+                            <a [routerLink]="['/order']">Đơn hàng của bạn</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9 account-info">
+                <h1>Thông tin tài khoản</h1>
+                <div class="account-info-detail">
+                    <p>
+                        <strong>Họ tên:</strong> {{ customer.customerName}}
+                    </p>
+                    <p>
+                        <strong>Email:</strong> {{ customer.username}}
+                    </p>
+                    <p>
+                        <strong>Điện thoại:</strong> {{ customer.customerPhone}}
+                    </p>
+                    <p>
+                        <strong>Địa chỉ:</strong> {{ customer.customerAddress}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

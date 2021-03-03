@@ -1,0 +1,223 @@
+<div class="search-bar">
+    <form action="">
+        <div class="input-group">
+            <input type="text" name="query" placeholder="Bạn cần tìm gì hôm nay?" [(ngModel)]="search">
+            <div class="input-search">
+                <button (click)="findProduct(search)" class="submit-search">
+                        <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+    <button class="exit-search-bar">
+            <i class="fa fa-times"></i>
+        </button>
+</div>
+<div class="black-drop"></div>
+<header class="header">
+    <div class="container">
+        <div class="row top-header">
+            <div class="col-md-5 left-header">
+                <div class="text">
+                    <span>Hot line đặt hàng: </span>
+                    <a href="tel:0373271996">037 327 1996</a>
+                </div>
+            </div>
+            <div class="col-md-2 logo">
+                <a href=""><img src="./assets/images/logo.png" alt="" class="img-fluid"></a>
+            </div>
+            <div class="col-md-5 right-header">
+                <ul class="nav-right">
+                    <li class="nav-account">
+                        <a href="">Tài khoản</a>
+                        <ul>
+                            <li>
+                                <a [routerLink]="['/account']" *ngIf='customer!=null'>XIN CHÀO, {{customer.customerName}}</a>
+                                <a [routerLink]="['/login']" *ngIf='customer==null'>Đăng nhập</a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['/register']" *ngIf='customer==null'>Đăng ký</a>
+                                <a href="javascript:void(0)" (click)="logoutAccount()" *ngIf='customer!=null'>Đăng xuất</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-cart">
+                        <a [routerLink]="['/cart']">Giỏ hàng
+                        <i class="fa fa-cart-arrow-down"></i>
+                        <span class="cart-notice">{{data.length}}</span>
+                        </a>
+                        <div class="cart-content">
+                            <ul>
+                                <div *ngIf='data.length!=0'>
+                                    <ul class="list-item-cart">
+                                        <li class="item-cart-info" *ngFor='let p of data; let i = index'>
+                                            <a href="" class="image-item">
+                                                <img src="{{p.product.listImgDTO[0].imageUrl}}" class="img-fluid" alt="">
+                                            </a>
+                                            <div class="item-cart-detail">
+                                                <a href="javascript:void(0)" class="remove-item" (click)='deleteCart(i)'>
+                                                    <i class="fas fa-times"></i>
+                                                </a>
+                                                <p class="product-name">
+                                                    <a href="">{{p.product.productName}}</a>
+                                                </p>
+                                            </div>
+                                            <div class="product-detail-bottom">
+                                                <span>{{p.product.price | number}}₫</span>
+                                                <div class="quantity-select">
+                                                    <button class="add-quantity" (click)="reduceCart(p)" [disabled]='p.quantity==1'>–</button>
+                                                    <input type="text" value="{{p.quantity}}" disabled>
+                                                    <button class="reduce-quantity" (click)="addQuantity(p)">+</button>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <div class="total-amount">
+                                        Tổng cộng:
+                                        <span>{{totalAmount|number}}₫</span>
+                                    </div>
+                                    <div class="cart-action">
+                                        <a href="javascript:void(0)" (click)="getPayment()">
+                                            <span>Thanh toán</span>
+                                        </a>
+                                        <a [routerLink]="['/cart']">
+                                            <span>Giỏ hàng</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="no-item" *ngIf='data.length==0'>
+                                    <p>Không có sản phẩm nào trong giỏ hàng</p>
+                                </div>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="" class="nav-search"><i class="fa fa-search"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Hết top header -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="menu-nav-bar">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                          <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact : true}">
+                                    <a class="nav-link" [routerLink]="['/']">Trang Chủ <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item one-level-menu" routerLinkActive="active" [routerLinkActiveOptions]="{ exact : true}">
+                                    <a class="nav-link" [routerLink]="['/']">Giới Thiệu
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+                                    <ul>
+                                        <li><a href="">Chính sách đổi hàng</a></li>
+                                        <li><a href="">FAQ</a></li>
+                                        <li><a href="">Hướng dẫn thanh toán</a></li>
+                                        <li><a href="">Chính sách vận chuyển</a></li>
+                                        <li><a href="">Hệ thống cửa hàng</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item one-level-menu" routerLinkActive="active" [routerLinkActiveOptions]="{ exact : true}">
+                                    <a class="nav-link" [routerLink]="['/collection']">Nam
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+                                    <ul>
+                                        <li><a href="">Đồng hồ KASHMIR</a></li>
+                                        <li><a href="">Đồng hồ WEIMAR</a></li>
+                                        <li><a href="">Đồng hồ COLOSSEUM</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item one-level-menu" routerLinkActive="active" [routerLinkActiveOptions]="{ exact : true}">
+                                    <a class="nav-link" [routerLink]="['/collection']">Nữ
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+                                    <ul>
+                                        <li><a href="">Bán chạy nhất</a></li>
+                                        <li><a href="">Đồng hồ MELISSANI</a></li>
+                                        <li><a href="">Đồng hồ MORAINE</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item one-level-menu" routerLinkActive="active" [routerLinkActiveOptions]="{ exact : true}">
+                                    <a class="nav-link" [routerLink]="['/collection']">Phụ Kiện
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+                                    <ul>
+                                        <li><a href="">Dây đồng hồ</a></li>
+                                        <li><a href="">Kính râm</a></li>
+                                        <li><a href="">Kính mắt</a></li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item mega-menu" routerLinkActive="active" [routerLinkActiveOptions]="{ exact : true}">
+                                    <a class="nav-link" [routerLink]="['/collection']">Sản Phẩm
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+                                    <div class="mega-content">
+                                        <ul class="level-1">
+                                            <li class="level-1-list">
+                                                <a class="" href="">Nam</a>
+                                                <ul class="level-2">
+                                                    <li class="level-2-list">
+                                                        <a href="">Đồng hồ KASHMIR</a>
+                                                    </li>
+                                                    <li class="level-2-list">
+                                                        <a href="">Đồng hồ WEIMAR</a>
+                                                    </li>
+                                                    <li class="level-2-list">
+                                                        <a href="">Đồng hồ COLOSSEUM</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="level-1-list">
+                                                <a href="">Nữ</a>
+                                                <ul class="level-2">
+                                                    <li class="level-2-list">
+                                                        <a href="">Bán chạy nhất</a>
+                                                    </li>
+                                                    <li class="level-2-list">
+                                                        <a href="">Đồng hồ MELISSANI</a>
+                                                    </li>
+                                                    <li class="level-2-list">
+                                                        <a href="">Đồng hồ MORAINE</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li class="level-1-list">
+                                                <a href="">Phụ kiện</a>
+                                                <ul class="level-2">
+                                                    <li class="level-2-list">
+                                                        <a href="">Dây đồng hồ</a>
+                                                    </li>
+                                                    <li class="level-2-list">
+                                                        <a href="">Kính râm</a>
+                                                    </li>
+                                                    <li class="level-2-list">
+                                                        <a href="">Kính mắt</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact : true}">
+                                    <a class="nav-link" [routerLink]="['/']">Tin Tức</a>
+                                </li>
+                                <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{ exact : true}">
+                                    <a class="nav-link" [routerLink]="['/contact']">Liên Hệ</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hết thanh menu -->
+</header>

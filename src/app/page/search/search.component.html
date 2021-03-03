@@ -1,0 +1,69 @@
+<section class="bread-crumb error">
+    <div class="container">
+        <ul>
+            <li>
+                <a href="">
+                    <span>Trang chủ </span>
+                </a>
+                <span>
+                    <i class="fa fa-angle-right"></i>
+                </span>
+            </li>
+            <li>
+                <strong>Kết quả tìm kiếm</strong>
+            </li>
+        </ul>
+    </div>
+</section>
+<!-- Hết Bread Crumb -->
+<section class="search-main">
+    <div class="container">
+        <div class="row" *ngIf="products.length!=0">
+            <div class="col-md-12">
+                <h1 class="no-result text-center">Có {{products.length}} kết quả tìm kiếm phù hợp</h1>
+            </div>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-15" *ngFor='let p of products'>
+                        <div class="one-product-searched">
+                            <a [routerLink]="['/detail/', p.productId]"></a>
+                            <span class="sale-box" *ngIf='p.sale !==""'>-11%</span>
+                            <div class="product">
+                                <img src="{{p.listImgDTO[0].imageUrl}}" alt="" class="img-fluid background">
+                                <img src="{{p.listImgDTO[0].imageUrl}}" alt="" class="img-fluid show">
+                            </div>
+                            <h4 class="text-center">{{p.classify}}</h4>
+                            <h3 class="text-center">{{p.productName}}</h3>
+                            <div class="product-prince text-center">
+                                <strong>{{p.price | number}}đ</strong>
+                                <span *ngIf='p.sale !== ""'>{{p.sale}}đ</span>
+                            </div>
+                            <div class="product-card">
+                                <a href="javascript:void(0)" (click)="buyItem(p)" class="text-center">Thêm vào giỏ hàng</a>
+                            </div>0
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="products.length==0">
+            <div class="col-md-12">
+                <h1 class="no-result text-center">Không tìm thấy bất kỳ kết quả nào với từ khóa trên.</h1>
+            </div>
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="text-center research">Vui lòng nhập từ khóa tìm kiếm khác</div>
+                <form action="" class="research-form">
+                    <div class="search-input-group">
+                        <input type="text" placeholder="Bạn cần tìm gì hôm nay?" autocomplete="off" [(ngModel)]='search' name="search">
+                        <span>
+                            <button (click)="seachProduct()">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

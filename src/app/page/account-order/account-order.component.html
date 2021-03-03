@@ -1,0 +1,73 @@
+<section class="bread-crumb error">
+    <div class="container">
+        <ul>
+            <li>
+                <a href="">
+                    <span>Trang chủ</span>
+                </a>
+                <span>
+                    <i class="fa fa-angle-right"></i>
+                </span>
+            </li>
+            <li>
+                <strong> Trang khách hàng</strong>
+            </li>
+        </ul>
+    </div>
+</section>
+<!-- Hết Bread Crumb -->
+<section class="page-customer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="block-account">
+                    <h5>Trang tài khoản</h5>
+                    <p>
+                        Xin chào,
+                        <span>{{customer.customerName | uppercase}}</span> &nbsp;!
+                    </p>
+                    <ul>
+                        <li><a [routerLink]="['/account']" class="active">Thông tin tài khoản</a></li>
+                        <li>
+                            <a [routerLink]="['/order']">Đơn hàng của bạn</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9 account-info">
+                <h1 class="order-list">Đơn hàng của bạn</h1>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="order-table">
+                            <table border="1">
+                                <thead>
+                                    <tr>
+                                        <th>Đơn hàng</th>
+                                        <th>Ngày</th>
+                                        <th>Địa chỉ</th>
+                                        <th>Giá thị đơn hàng</th>
+                                        <th>TT thanh toán</th>
+                                        <th>TT vận chuyển</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor='let p of customer.listOrdDTO'>
+                                        <td><a [routerLink]="['/order/',p.orderId]">#{{p.orderId}}</a></td>
+                                        <td>22/02/2021</td>
+                                        <td>{{customer.customerAddress}}</td>
+                                        <td><span>{{p.totalAmount | number}}₫</span></td>
+                                        <td><span>Chưa thu tiền</span></td>
+                                        <td><span>Chưa chuyển</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="6" *ngIf='customer.listOrdDTO.length == 0'>Không có đơn hàng nào.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

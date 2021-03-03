@@ -1,0 +1,97 @@
+<section class="bread-crumb error">
+    <div class="container">
+        <ul>
+            <li>
+                <a href="">
+                    <span>Trang chủ</span>
+                </a>
+                <span>
+                    <i class="fa fa-angle-right"></i>
+                </span>
+            </li>
+            <li>
+                <strong> Giỏ hàng</strong>
+            </li>
+        </ul>
+    </div>
+</section>
+<!-- Hết Bread Crumb -->
+<div class="container main-cart">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>
+                Giỏ hàng
+                <span>({{data.length}} sản phẩm)</span>
+            </h1>
+            <div class="row main-cart-detail" *ngIf='flag'>
+                <form action="">
+                    <div class="row">
+                        <div class="col-md-9 cart-detail">
+                            <div class="cart-item">
+                                <div class="row info-item" *ngFor='let p of data; let i = index'>
+                                    <div class="col-md-3 col-left">
+                                        <p>
+                                            <a href="">
+                                                <img src="{{p.product.listImgDTO[0].imageUrl}}" alt="">
+                                            </a>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-9 col-right">
+                                        <div class="product-name">
+                                            <p>
+                                                <a href="">{{p.product.productName}}</a>
+                                            </p>
+                                            <p class="delete-product">
+                                                <a href="javascript:void(0)" (click)="deleteCart(i)">Xóa</a>
+                                            </p>
+                                        </div>
+                                        <div class="product-price">
+                                            <p>{{p.product.price*p.quantity | number}}₫</p>
+                                        </div>
+                                        <div class="product-quantity">
+                                            <div class="input-group">
+                                                <div class="input-group-btn">
+                                                    <button (click)="addCart(p)" class="add-quantity">+</button>
+                                                    <input type="text" value="{{p.quantity}}" [(ngModel)]='p.quantity' [ngModelOptions]="{standalone: true}" disabled>
+                                                    <button (click)="reduceCart(p)" class="reduce-quantity" [disabled]='p.quantity == 1'>-</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 cart-total-amount">
+                            <div class="cart-payment">
+                                <div class="cart-payment-fee">
+                                    <p>
+                                        <span>Tạm tính: </span>
+                                        <strong>{{totalAmount |number}}₫</strong>
+                                    </p>
+                                </div>
+                                <div class="cart-payment-fee">
+                                    <span>Thành tiền: </span>
+                                    <div class="amount">
+                                        <p>
+                                            <strong>{{totalAmount|number}}₫</strong>
+                                        </p>
+                                    </div>
+                                </div>
+                                <button class="buy-item" (click)="getPayment()">Thanh toán ngay</button>
+                                <button class="continue-shoping">Tiếp tục mua hàng</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="row main-cart-detail" *ngIf="!flag">
+                <div class="cart-empty">
+                    <img src="./assets/images/empty-cart.png" alt="">
+                    <div class="btn-cart-empty">
+                        <a href="">Tiếp tục lựa chọn</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

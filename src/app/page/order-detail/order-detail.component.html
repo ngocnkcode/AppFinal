@@ -1,0 +1,119 @@
+<section class="bread-crumb error">
+    <div class="container">
+        <ul>
+            <li>
+                <a href="">
+                    <span>Trang chủ</span>
+                </a>
+                <span>
+                    <i class="fa fa-angle-right"></i>
+                </span>
+            </li>
+            <li>
+                <a href="">
+                    <span>Trang tài khoản</span>
+                </a>
+                <span>
+                    <i class="fa fa-angle-right"></i>
+                </span>
+            </li>
+            <li>
+                <strong>Chi tiết đơn hàng</strong>
+            </li>
+        </ul>
+    </div>
+</section>
+<!-- Hết Bread Crumb -->
+<section class="page-customer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="block-account">
+                    <h5>Trang tài khoản</h5>
+                    <p>
+                        Xin chào,
+                        <span>a b</span> &nbsp;!
+                    </p>
+                    <ul>
+                        <li><a [routerLink]="['/account']" class="active">Thông tin tài khoản</a></li>
+                        <li>
+                            <a [routerLink]="['/order']">Đơn hàng của bạn</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9 account-info">
+                <div class="row order-detail-header">
+                    <h1 class="order-detail">Chi tiết đơn hàng #{{order.orderId}}</h1>
+                    <span class="order-detail-date">
+                        Ngày đặt hàng: 22/02/2021
+                    </span>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="order-address">
+                            <h2>Địa chỉ giao hàng</h2>
+                            <div class="order-address-detail">
+                                <p>
+                                    <strong>{{customer.customerName}}</strong>
+                                </p>
+                                <p>Địa chỉ: {{customer.customerAddress}}</p>
+                                <p>Số điện thoại: {{customer.customerPhone}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="table-order">
+                            <table border="1">
+                                <thead>
+                                    <tr>
+                                        <th>Sản phẩm</th>
+                                        <th>Đơn giá</th>
+                                        <th>Số lượng</th>
+                                        <th>Tổng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor='let p of product'>
+                                        <td class="product">
+                                            <div class="image_order">
+                                                <a href="">
+                                                    <img class="img-fluid" src="{{p.pro.listImgDTO[0].imageUrl}}" alt="">
+                                                </a>
+                                            </div>
+                                            <div class="content-order">
+                                                <a href="">{{p.pro.productName}}</a>
+                                            </div>
+                                        </td>
+                                        <td>{{p.pro.price}}₫</td>
+                                        <td>{{p.quantity}}</td>
+                                        <td>{{p.quantity*p.pro.price}}₫</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table class="total-order" border="1">
+                                <tfoot>
+                                    <tr>
+                                        <td>Khuyến mại</td>
+                                        <td>0₫</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Phí vận chuyển</td>
+                                        <td>40.000₫</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Tổng tiền</td>
+                                        <td>
+                                            <strong>{{order.totalAmount + 40000}}₫</strong>
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

@@ -1,0 +1,80 @@
+<div class="contact-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="header-content text-center">
+                    <h1>Liên hệ với chúng tôi</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Hết header contact -->
+<div class="contact-info">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="register-form">
+                    <h2 class="text-center">Gửi thông tin</h2>
+                    <span class="text-center">Bạn hãy điền nội dung tin nhắn vào form dưới đây và gửi cho chúng tôi. Chúng tôi sẽ trả lời bạn sau khi nhận được.</span>
+                    <form (ngSubmit)="onSubmit()" [formGroup]="formRegister">
+                        <div class="form-info">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="sort-info">
+                                        <p>Họ và tên <small>*</small></p>
+                                        <input type="text" placeholder="Nhập họ và tên" formControlName="name">
+                                        <span class="form-required" *ngIf="formRegister.controls.name.errors?.required && formRegister.controls.name.touched">Không được để trống</span>
+                                    </div>
+                                </div>
+                                <!-- Hết 1 sort-info -->
+                                <div class=" col-sm-6 ">
+                                    <div class="sort-info ">
+                                        <p>Email <small>*</small></p>
+                                        <input type="text " placeholder="Nhập địa chỉ Email " formControlName="email">
+                                        <span class="form-required " *ngIf="formRegister.controls.email.errors?.required && formRegister.controls.email.touched">Không được để trống</span>
+                                        <span class="form-required " *ngIf="formRegister.controls.email.errors?.email && formRegister.controls.email.touched">Email sai định dạng</span>
+                                    </div>
+                                </div>
+                                <!-- Hết 1 sort-info -->
+                                <div class="col-sm-12 ">
+                                    <div class="long-info ">
+                                        <p>Điện thoại <small>*</small></p>
+                                        <input type="text " placeholder="Nhập số điện thoại ">
+                                    </div>
+                                </div>
+                                <!-- Hết 1 long-info -->
+                                <div class="col-sm-12 ">
+                                    <div class="long-info ">
+                                        <p>Nội dung <small>*</small></p>
+                                        <textarea name="content " id=" " cols=" " rows="5 " placeholder="Nội dung liên hệ " formControlName="content"></textarea>
+                                        <span class="form-required " *ngIf="formRegister.controls.content.invalid && formRegister.controls.content.touched">Không được để trống</span>
+                                    </div>
+                                    <div class="form-confirm ">
+                                        <a href=" ">Gửi tin nhắn</a>
+                                    </div>
+                                </div>
+                                <!-- Hết 1 long-info -->
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-md-12 ">
+                <div class="contact-map ">
+                    <div class="contact-map-title text-center ">
+                        <h3>Bản đồ cửa hàng</h3>
+                    </div>
+                    <div class="contact-map-location ">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3723.6549998389814!2d105.78124751540255!3d21.0464859925476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ab32dd484c53%3A0x4201b89c8bdfd968!2zMjM4IEhvw6BuZyBRdeG7kWMgVmnhu4d0LCBD4buVIE5odeG6vywgQ-G6p3UgR2nhuqV5LCBIw6AgTuG7mWksIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1608999888857!5m2!1svi!2s "
+                            width="600 " height="450 " frameborder="0 " style="border:0; " allowfullscreen=" " aria-hidden="false " tabindex="0 "></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

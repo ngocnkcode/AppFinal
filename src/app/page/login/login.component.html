@@ -1,0 +1,67 @@
+<section class="bread-crumb error">
+    <div class="container">
+        <ul>
+            <li>
+                <a href="">
+                    <span>Trang chủ</span>
+                </a>
+                <span>
+                    <i class="fa fa-angle-right"></i>
+                </span>
+            </li>
+            <li>
+                <strong> Đăng nhập tài khoản</strong>
+            </li>
+        </ul>
+    </div>
+</section>
+<!-- Hết Bread Crumb -->
+<div class="login-form">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="login-header text-center">
+                    <h1 class="login-header-title">Đăng nhập tài khoản</h1>
+                </div>
+                <div class="login-social text-center">
+                    <a href=""><img src="//bizweb.dktcdn.net/assets/admin/images/login/fb-btn.svg" alt=""></a>
+                    <a href=""><img src="//bizweb.dktcdn.net/assets/admin/images/login/gp-btn.svg" alt=""></a>
+                </div>
+                <form action="">
+                    <div class="form-signup">
+                        <fieldset class="form-group">
+                            <label for="">
+                                Email
+                                <span>*</span>
+                            </label>
+                            <input type="text" placeholder="Nhập Địa chỉ Email" name="username" [(ngModel)]='customer.username' #txtUser='ngModel' required email>
+                            <span class="form-required" *ngIf='txtUser.touched && txtUser.errors?.required'>Không được để trống</span>
+                            <span class="form-required" *ngIf='txtUser.touched && txtUser.errors?.email'>Email sai định dạng</span>
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <label for="">
+                                Mật khẩu
+                                <span>*</span>
+                            </label>
+                            <input type="password" placeholder="Nhập Mật khẩu" name="password" [(ngModel)]='customer.password' #txtPassword='ngModel' required>
+                            <span class="form-required" *ngIf='txtPassword.touched && txtPassword.errors?.required'>Không được để trống</span>
+                        </fieldset>
+                        <div class="confirm-login text-center">
+                            <button (click)='loginCustomer()'>Đăng nhập</button>
+                        </div>
+                        <p class="text-center">
+                            <a href="">Quên mật khẩu?</a>
+                        </p>
+                        <div class="login-register text-center">
+                            <p>
+                                Bạn chưa có tài khoản. Đăng ký
+                                <a href="">tại đây.</a>
+                            </p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,173 @@
+<section class="bread-crumb">
+    <div class="container">
+        <ul>
+            <li>
+                <a href="">
+                    <span>Trang chủ </span>
+                </a>
+                <span>
+                    <i class="fa fa-angle-right"></i>
+                </span>
+            </li>
+            <li><a href=""><span> Nữ </span></a>
+                <span>
+                    <i class="fa fa-angle-right"></i>
+                </span>
+            </li>
+            <li><span class="in-here"> {{product.productName}}</span></li>
+        </ul>
+    </div>
+</section>
+<!-- Hết bread crumb -->
+<section class="product-detail">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="product-image">
+                    <a href="">
+                        <img src="{{imageProduct[0]}}" alt="" class="img-fluid detail-images">
+                    </a>
+                </div>
+                <div class="view-more-image">
+                    <div class="view-more-image-one view-now">
+                        <img src="{{imageProduct[0]}}" alt="" class="img-fluid">
+                    </div>
+                    <div class="view-more-image-one">
+                        <img src="{{imageProduct[1]}}" alt="" class="img-fluid">
+                    </div>
+                    <div class="view-more-image-one">
+                        <img src="{{imageProduct[2]}}" alt="" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 product-info">
+                <div class="product-info__name">
+                    <h1>{{product.productName}}</h1>
+                    <div class="product-info__name-sku">
+                        SKU:
+                        <span>{{product.sku}}</span>
+                    </div>
+                    <div class="product-info__rating">
+                        <span>Đánh giá</span>
+                    </div>
+                </div>
+                <!-- Hết div tên sản phẩm -->
+                <div class="product-info__price">
+                    <div class="product-info__price-price">
+                        <span>{{product.price | number}}₫</span>
+                    </div>
+                    <div class="product-info__price-inventory">
+                        <span class="product-info__price-inventory-status">
+                            Tình trạng:
+                        </span>
+                        <span class="product-info__price-inventory-notice">
+                            Còn hàng
+                        </span>
+                    </div>
+                </div>
+                <!-- Hết giá sản phẩm -->
+                <div class="product-info__buy-item">
+                    <form action="">
+                        <div class="product-info__buy-item-form">
+                            <div class="product-info__buy-item-form-quantity">
+                                <label for="">Số lượng:</label>
+                            </div>
+                            <div class="product-info__buy-item-form-number">
+                                <button>-</button>
+                                <input type="text" value="1">
+                                <button>+</button>
+                            </div>
+
+                        </div>
+                        <div class="btn__buy-now">
+                            <button (click)="buyItem(product)">
+                                <span class="txt-main">
+                                    Mua ngay với giá <b>{{product.price | number}}đ</b>
+                                </span>
+                                <br>
+                                <span class="txt-normal">Đặt mua giao hàng tận nơi</span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <!-- Hết form mua sản phẩm -->
+                <div class="product-info__hotline">
+                    Gọi đặt mua:
+                    <a href="tel: 0373271996">037 327 1996</a>
+                    <span> (miễn phí 8:30 - 21:30).</span>
+                </div>
+                <!-- Hết phần hotline -->
+                <div class="product-info__service">
+                    <div class="product-info__service-one-service">
+                        <img src="//bizweb.dktcdn.net/100/355/487/themes/720328/assets/policy_images_2.svg?1607743058503" alt="" class="img-fluid">
+                        <h4>Miễn phí vận chuyển với đơn hàng <strong>từ 700.000đ</strong></h4>
+                    </div>
+                    <div class="product-info__service-one-service">
+                        <img src="//bizweb.dktcdn.net/100/355/487/themes/720328/assets/policy_images_3.svg?1607743058503" alt="" class="img-fluid">
+                        <h4>Bảo hành <strong>10 năm</strong> do lỗi nhà sản xuất</h4>
+                    </div>
+                    <div class="product-info__service-one-service">
+                        <img src="//bizweb.dktcdn.net/100/355/487/themes/720328/assets/policy_images_4.svg?1607743058503" alt="" class="img-fluid">
+                        <h4>Cam kết <strong>100% chính hãng</strong></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 control-tabs">
+                <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link  active show" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Mô tả</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Giới thiệu</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                        <p>Kích thước: 20 mm</p>
+                        <p>Chất liệu: Dây Da Genuine</p>
+                        <p>Chốt tháo lắp: Smart spring bar, tháo lắp dễ dàng</p>
+                    </div>
+                    <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                        <p>Kiến thức về đồng hồ, thông tin khuyến mãi, tin tức & sự kiện, hình ảnh, video clip về đồng hồ đeo tay mới nhất hiện nay, cập nhật liên tục nhanh và đầy đủ...</p>
+                    </div>
+                </div>
+            </div>
+            <div class="container control-related-product">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="related-product">
+                            <div class="new-product-title">
+                                <h2>
+                                    <a href="">Sản phẩm <strong>Liên quan</strong></a>
+
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3 col-md-6" *ngFor='let p of relatedProduct'>
+                        <div class="one-new-product">
+                            <a [routerLink]="['/detail/', p.id]"></a>
+                            <span class="sale-box" *ngIf='p.sale !==""'>-11%</span>
+                            <div class="product">
+                                <img src="{{p.images[0]}}" alt="" class="img-fluid background">
+                                <img src="{{p.images[1]}}" alt="" class="img-fluid show">
+                            </div>
+                            <h4 class="text-center"></h4>
+                            <h3 class="text-center">{{p.name}}</h3>
+                            <div class="product-prince text-center">
+                                <strong>{{p.price}}₫</strong>
+                                <span *ngIf='p.sale !== ""'>{{p.sale}}đ</span>
+                            </div>
+                            <div class="product-card">
+                                <a href="" class="text-center">Thêm vào giỏ hàng</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Hết sản phẩm 1 -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
